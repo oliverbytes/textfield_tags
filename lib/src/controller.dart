@@ -27,9 +27,9 @@ abstract class TextfieldTagsNotifier extends ChangeNotifier {
   late FocusNode? focusNode;
 
   late Set<String>? _textSeparators;
-  late List<String>? _tags;
+  List<String> _tags = const [];
 
-  List<String>? get getTags => _tags?.toList();
+  List<String> get getTags => _tags;
 
   void initS(
     List<String>? initialTags,
@@ -44,11 +44,11 @@ abstract class TextfieldTagsNotifier extends ChangeNotifier {
   }
 
   set addTag(String tag) {
-    _tags!.add(tag);
+    _tags.add(tag);
   }
 
   set removeTag(String tag) {
-    _tags!.remove(tag);
+    _tags.remove(tag);
   }
 
   onChanged(String value);
@@ -77,7 +77,7 @@ class TextfieldTagsController extends TextfieldTagsNotifier {
   }
 
   bool get hasError => _error != null && _error!.isNotEmpty;
-  bool get hasTags => _tags != null && _tags!.isNotEmpty;
+  bool get hasTags => _tags.isNotEmpty;
   String? get getError => _error;
 
   void scrollTags({
@@ -172,7 +172,7 @@ class TextfieldTagsController extends TextfieldTagsNotifier {
 
   void clearTags() {
     _error = null;
-    _tags!.clear();
+    _tags.clear();
     notifyListeners();
   }
 
